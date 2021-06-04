@@ -1,3 +1,6 @@
+// Creating Variable to target main element
+var mainEl = $("main");
+
 // Fetches a random joke could expand to give the user the ability to filter by programming or general?
 // Documentation here: https://github.com/15Dkatz/official_joke_api
 var jokeRandom = function() {
@@ -5,6 +8,8 @@ var jokeRandom = function() {
     .then(function(res) {
         res.json().then(function(data){
             console.log(data);
+            var jokeArr = [data.setup, data.punchline];
+            console.log(jokeArr)
         });
     });
 }
