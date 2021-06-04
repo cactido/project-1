@@ -99,5 +99,8 @@ var randomQuote = function() {
     })
 }
 
-var x = [jokeRandom, triviaRandom, randomActivity, randomFoodPic, randomAdvice, randomQuote];
+var x = [jokeRandom, randomActivity, randomFoodPic, randomAdvice, randomQuote];
 
+for (var i = 0; i < x.length; i++) {
+    x[i]();
+}
