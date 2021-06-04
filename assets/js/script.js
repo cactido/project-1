@@ -8,8 +8,10 @@ var jokeRandom = function() {
     .then(function(res) {
         res.json().then(function(data){
             console.log(data);
-            var jokeArr = [data.setup, data.punchline];
-            console.log(jokeArr)
+            // creates a setup and a punch line div then appends them to the main element
+            var setUpEl = $("<div>").addClass("joke-setup").text("Setup: " + data.setup);
+            var punchLineEl = $("<div>").addClass("punch-line").text("Punchline: " + data.punchline);
+            mainEl.append(setUpEl, punchLineEl);
         });
     });
 }
@@ -19,12 +21,15 @@ var triviaRandom = function() {
     fetch("https://opentdb.com/api.php?amount=1").then(function(res){
         res.json().then(function(data){
             console.log(data);
+            alert("Still needs game logic");
         })
     })
 }
 
 // Grabs a random XKCD comic. Currently having and issue with CORS so currently implementing this is on the backburner
 // Documentation here:
+
+// Ignore for now
 var randomXKCD = function() {
     // creates a random number between 0-614
     var xRand = Math.floor(Math.random()*615);
@@ -44,13 +49,17 @@ var randomXKCD = function() {
         });
     });
 }
+// Ignore for now
 
 // fetches a random activity, can display this as "Random Activity for Later" and maybe put in options to filter by type
 // documentation here: https://www.boredapi.com/documentation
 var randomActivity = function() {
     fetch("http://www.boredapi.com/api/activity/").then(function(res){
         res.json().then(function(data){
+            // creates a bored-activity div and appends it to the main element
             console.log(data);
+            var boredEl = $("<div>").addClass("bored-activity").text("Here's something to try: " + data.activity);
+            mainEl.append(boredEl);
         })
     })
 }
@@ -59,7 +68,10 @@ var randomActivity = function() {
 var randomFoodPic = function() {
     fetch("https://foodish-api.herokuapp.com/api/").then(function(res){
         res.json().then(function(data){
+            // creates an img element and appends it to the main element
             console.log(data);
+            var foodImgEl = $("<img>").attr("src", data.image);
+            mainEl.append(foodImgEl);
         })
     })
 }
@@ -69,6 +81,8 @@ var randomAdvice = function() {
     fetch("https://api.adviceslip.com/advice").then(function(res){
         res.json().then(function(data){
             console.log(data);
+            var adviceEl = $("<div>").addClass("advice").text("Here is some advice you didn't ask for: " + data.slip.advice);
+            mainEl.append(adviceEl);
         })
     })
 }
@@ -78,6 +92,9 @@ var randomQuote = function() {
     fetch("https://api.quotable.io/random").then(function(res){
         res.json().then(function(data){
             console.log(data);
+            var quoteEl = $("<div>").addClass("quote").text(data.content);
+            var authorEl = $("<div>").addClass("quote-author").text("Quote by " + data.author);
+            mainEl.append(quoteEl, authorEl);
         })
     })
 }
