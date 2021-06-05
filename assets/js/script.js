@@ -110,9 +110,19 @@ var randomFoodPic = function() {
 var randomAdvice = function() {
     fetch("https://api.adviceslip.com/advice").then(function(res){
         res.json().then(function(data){
-            console.log(data);
-            var adviceEl = $("<div>").addClass("advice").text("Here is some advice you didn't ask for: " + data.slip.advice);
-            containerEl.append(adviceEl);
+            // checks to see if there is alread advice generated and if so removes it
+            if ($("#advice-row") !== false){
+                $("#advice-row").remove();
+            }
+            // creates a div with the class row and id of advice-row
+            var adviceRowEl = $("<div>").addClass("row").attr("id","advice-row");
+            // creates a div with the column classes to hold the advice
+            var adviceColEl = $("<div>").addClass("col-12 col-md-8").text("Here is some advice you didn't ask for: " + data.slip.advice);
+            // creates a button that will be used to get some more advice
+            var buttonEl = $("<button>").addClass("button col-12 col-md-4").attr("id","advice-rerand").text("Want Some More Advice?");
+            // appends created elements together in the adviceRowEl then appends that to the random-element-container 
+            adviceRowEl.append(adviceColEl, buttonEl);
+            containerEl.append(adviceRowEl);
         })
     })
 }
@@ -121,10 +131,23 @@ var randomAdvice = function() {
 var randomQuote = function() {
     fetch("https://api.quotable.io/random").then(function(res){
         res.json().then(function(data){
-            console.log(data);
+            // checks if a div with the id of quote-row already exists and if so it removes it
+            if ($("#quote-row") !== false){
+                $("#quote-row").remove();
+            }
+            // creates a div with the class row and id of quote-row
+            var quoteRowEl = $("<div>").addClass("row").attr("id","quote-row");
+            // creates a div with the column classes to hold the quote
+            var quotewrapperEl = $("<div>").addClass("col-12 col-md-8")
+            // creates a div for the quote and the author
             var quoteEl = $("<div>").addClass("quote").text(data.content);
-            var authorEl = $("<div>").addClass("quote-author").text("Quote by " + data.author);
-            containerEl.append(quoteEl, authorEl);
+            var authorEl = $("<div>").addClass("author").text("Quote By " + data.author);
+            // creates a button that will be used to get another quote
+            var buttonEl = $("<button>").addClass("button col-12 col-md-4").attr("id","quote-rerand").text("Another quote?");
+            // appends created elements together in the quoteRowEl then appends that to the random-element-container 
+            quotewrapperEl.append(quoteEl, authorEl);
+            quoteRowEl.append(quotewrapperEl, buttonEl);
+            containerEl.append(quoteRowEl);
         })
     })
 }
@@ -147,7 +170,11 @@ $("main").on("click","button",function(){
         case "food-pic-rerand":
             randomFoodPic();
             break;
-        default:
-
+        case "advice-rerand":
+            randomAdvice();
+            break;
+        case "quote-rerand":
+            randomQuote();
+            break;
     }
 })
