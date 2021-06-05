@@ -8,14 +8,18 @@ var jokeRandom = function() {
     .then(function(res) {
         res.json().then(function(data){
             console.log(data);
-            var jokeEl = $("#jokes").empty();
+            if ($("#joke-row") !== false){
+                $("#joke-row").remove();
+            }
+            var jokeRowEl = $("<div>").addClass("row").attr("id","joke-row");
             // creates a setup and a punch line div then appends them to the main element
             var jokewrapperEl = $("<div>").addClass("col-8")
             var setUpEl = $("<div>").addClass("joke").text("Setup: " + data.setup);
             var punchLineEl = $("<div>").addClass("punch-line").text("Punchline: " + data.punchline);
             var buttonEl = $("<button>").addClass("button col-4").attr("id","joke-rerand").text("Rerandomize");
             jokewrapperEl.append(setUpEl, punchLineEl);
-            jokeEl.append(jokewrapperEl, buttonEl);
+            jokeRowEl.append(jokewrapperEl, buttonEl);
+            containerEl.append(jokeRowEl);
         });
     });
 }
