@@ -11,11 +11,20 @@
     <title>Random of the Day</title>
 </head>
 <body>
-    <h2>Random of the Day</h2>
-
-    <main>
-
-    </main>
+    <div class="container">
+        <div class="title-container">
+            <h1 class="text-center bg-dark text-light">Random of the Day</h1>
+        </div>
+        <main>
+            <div class="text-center">
+                <h3>Todays Date Holder</h3>
+                <button class="btn col-4 m-0">Edit Elements</button>
+            </div>
+            <article id="random-element-container">
+            
+            </article>
+        </main>
+    </div>
 
     <!-- Modal start-->
     <div class="modal" id="random-options-modal">
@@ -29,7 +38,12 @@
                 <!-- modal body items start -->
                 <div class="modal-body">
                     <div class="options-items">
-                        <input type="search">
+                        <select id="option-item-select">
+                            <option value="random-joke">Random Joke</option>
+                            <option value="random-advice">Random Advice</option>
+                            <option value="random-food-pic">Random Food Pic</option>
+                            <option value="random-comic">Random Comic</option>
+                          </select>
                     </div>
                 </div>
             </div>
