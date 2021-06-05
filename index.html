@@ -11,13 +11,44 @@
     <title>Random of the Day</title>
 </head>
 <body>
-    <h2>What's Going On?</h2>
-
-    <main>
-        <div class="container" id="random-elements">
+    <div class="container justify-content-center">
+        <div class="title-container">
+            <h1 class="text-center bg-dark text-light">Random of the Day</h1>
         </div>
+        <main>
+            <div class="text-center">
+                <h3>Todays Date Holder</h3>
+                <button class="btn col-4">Edit Elements</button>
+            </div>
+            <article class="container" id="random-element-container">
+            
+            </article>
+        </main>
+    </div>
 
-    </main>
+    <!-- Modal start-->
+    <div class="modal" id="random-options-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Random Things Selection</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                    </button>
+                </div>
+                <!-- modal body items start -->
+                <div class="modal-body">
+                    <div class="options-items">
+                        <select id="option-item-select">
+                            <option value="random-joke">Random Joke</option>
+                            <option value="random-advice">Random Advice</option>
+                            <option value="random-food-pic">Random Food Pic</option>
+                            <option value="random-comic">Random Comic</option>
+                          </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
