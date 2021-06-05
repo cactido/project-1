@@ -67,6 +67,7 @@ var randomXKCD = function() {
 // documentation here: https://www.boredapi.com/documentation
 var randomActivity = function() {
     fetch("http://www.boredapi.com/api/activity/").then(function(res){
+        // checks if a div with the id of activity-row already exists and if so it removes it
         res.json().then(function(data){
             if ($("#activity-row") !== false){
                 $("#activity-row").remove();
@@ -88,10 +89,19 @@ var randomActivity = function() {
 var randomFoodPic = function() {
     fetch("https://foodish-api.herokuapp.com/api/").then(function(res){
         res.json().then(function(data){
-            // creates an img element and appends it to the main element
-            console.log(data);
+            // checks if a div with the id of food-pic-row already exists and if so it removes it
+            if ($("#food-pic-row") !== false){
+                $("#food-pic-row").remove();
+            }
+            // creates div with class of row and id of food-pic-row for the img and button to go in
+            var foodRowEl = $("<div>").addClass("row").attr("id","food-pic-row");
+            // creates and img element
             var foodImgEl = $("<img>").attr("src", data.image).addClass("img-fluid");
-            containerEl.append(foodImgEl);
+            // creates a button element
+            var buttonEl = $("<button>").addClass("button col-12").attr("id","food-pic-rerand").text("Want Another Food Picture?");
+            // appends created elements together and then to the random-element-container
+            foodRowEl.append(foodImgEl, buttonEl);
+            containerEl.append(foodRowEl);
         })
     })
 }
@@ -133,6 +143,9 @@ $("main").on("click","button",function(){
             break;
         case "activity-rerand":
             randomActivity();
+            break;
+        case "food-pic-rerand":
+            randomFoodPic();
             break;
         default:
 
