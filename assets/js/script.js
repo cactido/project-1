@@ -29,17 +29,6 @@ var jokeRandom = function() {
         });
     });
 }
-// Gets random trivia question could give user option to filter by category, true false, etc.
-// Documentation here: https://opentdb.com/api_config.php
-var triviaRandom = function() {
-    fetch("https://opentdb.com/api.php?amount=1").then(function(res){
-        res.json().then(function(data){
-            console.log(data);
-            alert("Still needs game logic");
-        });
-    });
-}
-
 // Grabs a random XKCD comic. Currently having and issue with CORS so currently implementing this is on the backburner
 // Documentation here:
 
@@ -114,7 +103,7 @@ var randomFoodPic = function() {
 // Get some random advice
 // Documentation Here: https://api.adviceslip.com/#top
 var randomAdvice = function() {
-    fetch("https://api.adviceslip.com/advice").then(function(res){
+    fetch("https://api.adviceslip.com/advice",{cache: "no-cache"}).then(function(res){
         res.json().then(function(data){
             // checks if div with associated id exists, empties it if it does or creates it if it doesn't
             if ($("#advice-row") == true){
@@ -141,7 +130,7 @@ var randomQuote = function() {
         res.json().then(function(data){
             // checks if div with associated id exists, empties it if it does or creates it if it doesn't
             if ($("#quote-row") == true){
-                $("#quote-row").clear();
+                $("#quote-row").empty();
             } else {
                 containerEl.append($("<div>").attr("id","quote-row"));
             }
@@ -162,8 +151,51 @@ var randomQuote = function() {
     })
 }
 
+// Gets random trivia question could give user option to filter by category, true false, etc.
+// Documentation here: https://opentdb.com/api_config.php
+var triviaRandom = function() {
+    fetch("https://opentdb.com/api.php?amount=1").then(function(res){
+        res.json().then(function(data){
+            // checks if div with associated id exists, empties it if it does or creates it if it doesn't
+            if ($("#trivia-row") == true){
+                $("#trivia-row").empty();
+            } else {
+                containerEl.append($("<div>").attr("id","trivia-row"));
+            }
+            // creates a div with the class row and id of triva-row
+            var triviaRowEl = $("<div>").addClass("row").attr("id","trivia-row");
+            // creates a div with the column classes to hold the question and answers
+            var triviaWrapperEl = $("<div>").addClass("col-12 col-md-12")
+            // creates a div for the question, appends question as html instead of text because response is encoded
+            var questionEl = $("<div>").addClass("question","row").html(data.results[0].question);
+            // creates answer rows
+            triviaWrapperEl.append(questionEl);
 
-var x = [jokeRandom, randomActivity, randomFoodPic, randomAdvice, randomQuote];
+            var answerSelections = ["True", "False"];
+            var numberOfAnswers = 2;
+            if (data.results[0].type == "multiple") {
+                var numberOfAnswers = 4; 
+            }
+                        
+            var currentAnswerRow = 0;
+            var answerWrapper = $("<div>").addClass("col-12");
+            
+            for (let i = 0; i < numberOfAnswers; i++) {
+                answerWrapper.append($("<div>").addClass("row"));
+                answerWrapper.append($("<button>").addClass("button col-2").text(i+1));
+                answerWrapper.append($("<span>").addClass("col-9").html(data.results[0].correct_answer));
+                triviaWrapperEl.append(answerWrapper);
+                console.log(currentAnswerRow);
+            }
+
+            // appends created elements together and then to the random-element-container
+            triviaRowEl.append(triviaWrapperEl);
+            $("#trivia-row").html(triviaWrapperEl);
+        });
+    });
+}
+
+var x = [triviaRandom];
 
 for (var i = 0; i < x.length; i++) {
     x[i]();
