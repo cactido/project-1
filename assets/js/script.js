@@ -197,13 +197,15 @@ var triviaRandom = function() {
     });
 }
 
-var x = [jokeRandom, randomActivity, randomAdvice, randomQuote, triviaRandom, randomFoodPic];
+// var x = [jokeRandom, randomActivity, randomAdvice, randomQuote, triviaRandom, randomFoodPic];
 
-for (var i = 0; i < x.length; i++) {
-    x[i]();
-}
+// for (var i = 0; i < x.length; i++) {
+//     x[i]();
+// }
 
+// checks the main function for when a button is pushed
 $("main").on("click","button",function(){
+    // switch to run functions based off the id of the button that was pushed
     switch ($(this).attr("id")) {
         case "joke-rerand":
             jokeRandom();
@@ -226,7 +228,9 @@ $("main").on("click","button",function(){
     }
 })
 
+// listener to handle when the accept button is pressed in the modal window
 $("#random-options-modal .btn-accept").click(function(){
+    // switch that runs the function based off of the value of what option is currently in the select
     switch ($("#option-item-select").val()){
         case "random-joke":
             jokeRandom();
@@ -242,6 +246,9 @@ $("#random-options-modal .btn-accept").click(function(){
             break;
         case "random-quote":
             randomQuote();
+            break;
+        case "random-trivia":
+            triviaRandom();
             break;
     }
     $("#random-options-modal").modal("hide");
