@@ -196,11 +196,11 @@ var triviaRandom = function() {
     });
 }
 
-var x = [jokeRandom, randomActivity, randomFoodPic, randomAdvice, randomQuote, triviaRandom];
+// var x = [jokeRandom, randomActivity, randomFoodPic, randomAdvice, randomQuote, triviaRandom];
 
-for (var i = 0; i < x.length; i++) {
-    x[i]();
-}
+// for (var i = 0; i < x.length; i++) {
+//     x[i]();
+// }
 
 $("main").on("click","button",function(){
     switch ($(this).attr("id")) {
@@ -219,5 +219,31 @@ $("main").on("click","button",function(){
         case "quote-rerand":
             randomQuote();
             break;
+        case "edit-modal": 
+            $("#random-options-modal").modal("show");
+            break;
     }
+})
+
+$("#random-options-modal .btn-accept").click(function(){
+    console.log("clicked accept");
+    switch ($("#option-item-select").val()){
+        case "random-joke":
+            jokeRandom();
+            console.log("clicked random joke");
+            break;
+        case "random-activity":
+            randomActivity();
+            break;
+        case "random-food-pic":
+            randomFoodPic();
+            break;
+        case "random-advice":
+            randomAdvice();
+            break;
+        case "random-quote":
+            randomQuote();
+            break;
+    }
+    $("#random-options-modal").modal("hide");
 })
