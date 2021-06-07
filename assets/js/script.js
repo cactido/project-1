@@ -64,6 +64,7 @@ var randomActivity = function() {
                 $("#activity-row").empty();
             } else {
                 containerEl.append($("<div>").attr("id","activity-row"));            
+      
             }
             // creates a div with the class row and id of activity-row
             var activityRowEl = $("<div>").addClass("row").attr("id","activity-row");
@@ -195,7 +196,7 @@ var triviaRandom = function() {
     });
 }
 
-var x = [triviaRandom];
+var x = [jokeRandom, randomActivity, randomFoodPic, randomAdvice, randomQuote, triviaRandom];
 
 for (var i = 0; i < x.length; i++) {
     x[i]();
