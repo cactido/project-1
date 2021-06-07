@@ -7,9 +7,11 @@ var jokeRandom = function() {
     fetch("https://official-joke-api.appspot.com/random_joke")
     .then(function(res) {
         res.json().then(function(data){
-            // checks if a div with the id of joke-row already exists and if so it removes it
-            if ($("#joke-row") !== false){
-                $("#joke-row").remove();
+            // checks if div with associated id exists, empties it if it does or creates it if it doesn't
+            if ($("#joke-row") == true){
+                $("#joke-row").empty();
+            } else {
+                containerEl.append($("<div>").attr("id","joke-row"));
             }
             // creates a div with the class row and id of joke-row
             var jokeRowEl = $("<div>").addClass("row").attr("id","joke-row");
@@ -20,24 +22,13 @@ var jokeRandom = function() {
             var punchLineEl = $("<div>").addClass("punch-line").text("Punchline: " + data.punchline);
             // creates a button that will be used to get another joke
             var buttonEl = $("<button>").addClass("button col-12 col-md-4").attr("id","joke-rerand").text("Another Joke?");
-            // appends created elements together in the jokeRowEl then appends that to the random-element-container 
+            // appends created elements together and then to the random-element-container
             jokewrapperEl.append(setUpEl, punchLineEl);
             jokeRowEl.append(jokewrapperEl, buttonEl);
-            containerEl.append(jokeRowEl);
+            $("#joke-row").html(jokeRowEl);
         });
     });
 }
-// Gets random trivia question could give user option to filter by category, true false, etc.
-// Documentation here: https://opentdb.com/api_config.php
-var triviaRandom = function() {
-    fetch("https://opentdb.com/api.php?amount=1").then(function(res){
-        res.json().then(function(data){
-            console.log(data);
-            alert("Still needs game logic");
-        });
-    });
-}
-
 // Grabs a random XKCD comic. Currently having and issue with CORS so currently implementing this is on the backburner
 // Documentation here:
 
@@ -67,10 +58,13 @@ var randomXKCD = function() {
 // documentation here: https://www.boredapi.com/documentation
 var randomActivity = function() {
     fetch("http://www.boredapi.com/api/activity/").then(function(res){
-        // checks if a div with the id of activity-row already exists and if so it removes it
-        res.json().then(function(data){
-            if ($("#activity-row") !== false){
-                $("#activity-row").remove();
+            // checks if div with associated id exists, empties it if it does or creates it if it doesn't
+            res.json().then(function(data){
+            if ($("#activity-row") == true){
+                $("#activity-row").empty();
+            } else {
+                containerEl.append($("<div>").attr("id","activity-row"));            
+      
             }
             // creates a div with the class row and id of activity-row
             var activityRowEl = $("<div>").addClass("row").attr("id","activity-row");
@@ -78,9 +72,9 @@ var randomActivity = function() {
             var activityColEl = $("<div>").addClass("col-12 col-md-8").text("Here's something to try: " + data.activity);
             // creates a button that will be used to get some more activity
             var buttonEl = $("<button>").addClass("button col-12 col-md-4").attr("id","activity-rerand").text("Want Another Activity?");
-            // appends created elements together in the activityRowEl then appends that to the random-element-container 
+            // appends created elements together and then to the random-element-container
             activityRowEl.append(activityColEl, buttonEl);
-            containerEl.append(activityRowEl);
+            $("#activity-row").html(activityRowEl);
         });
     });
 }
@@ -89,9 +83,11 @@ var randomActivity = function() {
 var randomFoodPic = function() {
     fetch("https://foodish-api.herokuapp.com/api/").then(function(res){
         res.json().then(function(data){
-            // checks if a div with the id of food-pic-row already exists and if so it removes it
-            if ($("#food-pic-row") !== false){
-                $("#food-pic-row").remove();
+            // checks if div with associated id exists, empties it if it does or creates it if it doesn't
+            if ($("#food-pic-row") == true){
+                $("#food-pic-row").empty();
+            } else {
+                containerEl.append($("<div>").attr("id","food-pic-row"));
             }
             // creates div with class of row and id of food-pic-row for the img and button to go in
             var foodRowEl = $("<div>").addClass("row").attr("id","food-pic-row");
@@ -101,18 +97,20 @@ var randomFoodPic = function() {
             var buttonEl = $("<button>").addClass("button col-12").attr("id","food-pic-rerand").text("Want Another Food Picture?");
             // appends created elements together and then to the random-element-container
             foodRowEl.append(foodImgEl, buttonEl);
-            containerEl.append(foodRowEl);
+            $("#food-pic-row").html(foodRowEl);
         })
     })
 }
 // Get some random advice
 // Documentation Here: https://api.adviceslip.com/#top
 var randomAdvice = function() {
-    fetch("https://api.adviceslip.com/advice").then(function(res){
+    fetch("https://api.adviceslip.com/advice",{cache: "no-cache"}).then(function(res){
         res.json().then(function(data){
-            // checks to see if there is alread advice generated and if so removes it
-            if ($("#advice-row") !== false){
-                $("#advice-row").remove();
+            // checks if div with associated id exists, empties it if it does or creates it if it doesn't
+            if ($("#advice-row") == true){
+                $("#advice-row").empty();
+            } else {
+                containerEl.append($("<div>").attr("id","advice-row"));
             }
             // creates a div with the class row and id of advice-row
             var adviceRowEl = $("<div>").addClass("row").attr("id","advice-row");
@@ -120,9 +118,9 @@ var randomAdvice = function() {
             var adviceColEl = $("<div>").addClass("col-12 col-md-8").text("Here is some advice you didn't ask for: " + data.slip.advice);
             // creates a button that will be used to get some more advice
             var buttonEl = $("<button>").addClass("button col-12 col-md-4").attr("id","advice-rerand").text("Want Some More Advice?");
-            // appends created elements together in the adviceRowEl then appends that to the random-element-container 
+            // appends created elements together and then to the random-element-container
             adviceRowEl.append(adviceColEl, buttonEl);
-            containerEl.append(adviceRowEl);
+            $("#advice-row").html(adviceRowEl);
         })
     })
 }
@@ -131,9 +129,11 @@ var randomAdvice = function() {
 var randomQuote = function() {
     fetch("https://api.quotable.io/random").then(function(res){
         res.json().then(function(data){
-            // checks if a div with the id of quote-row already exists and if so it removes it
-            if ($("#quote-row") !== false){
-                $("#quote-row").remove();
+            // checks if div with associated id exists, empties it if it does or creates it if it doesn't
+            if ($("#quote-row") == true){
+                $("#quote-row").empty();
+            } else {
+                containerEl.append($("<div>").attr("id","quote-row"));
             }
             // creates a div with the class row and id of quote-row
             var quoteRowEl = $("<div>").addClass("row").attr("id","quote-row");
@@ -144,16 +144,59 @@ var randomQuote = function() {
             var authorEl = $("<div>").addClass("author").text("Quote By " + data.author);
             // creates a button that will be used to get another quote
             var buttonEl = $("<button>").addClass("button col-12 col-md-4").attr("id","quote-rerand").text("Another quote?");
-            // appends created elements together in the quoteRowEl then appends that to the random-element-container 
+            // appends created elements together and then to the random-element-container
             quotewrapperEl.append(quoteEl, authorEl);
             quoteRowEl.append(quotewrapperEl, buttonEl);
-            containerEl.append(quoteRowEl);
+            $("#quote-row").html(quoteRowEl);
         })
     })
 }
 
+// Gets random trivia question could give user option to filter by category, true false, etc.
+// Documentation here: https://opentdb.com/api_config.php
+var triviaRandom = function() {
+    fetch("https://opentdb.com/api.php?amount=1").then(function(res){
+        res.json().then(function(data){
+            // checks if div with associated id exists, empties it if it does or creates it if it doesn't
+            if ($("#trivia-row") == true){
+                $("#trivia-row").empty();
+            } else {
+                containerEl.append($("<div>").attr("id","trivia-row"));
+            }
+            // creates a div with the class row and id of triva-row
+            var triviaRowEl = $("<div>").addClass("row").attr("id","trivia-row");
+            // creates a div with the column classes to hold the question and answers
+            var triviaWrapperEl = $("<div>").addClass("col-12 col-md-12")
+            // creates a div for the question, appends question as html instead of text because response is encoded
+            var questionEl = $("<div>").addClass("question","row").html(data.results[0].question);
+            // creates answer rows
+            triviaWrapperEl.append(questionEl);
 
-var x = [jokeRandom, randomActivity, randomFoodPic, randomAdvice, randomQuote];
+            var answerSelections = ["True", "False"];
+            var numberOfAnswers = 2;
+            if (data.results[0].type == "multiple") {
+                var numberOfAnswers = 4; 
+            }
+                        
+            var currentAnswerRow = 0;
+            var answerWrapper = $("<div>").addClass("col-12");
+            
+            for (let i = 0; i < numberOfAnswers; i++) {
+                answerWrapper.append($("<div>").addClass("row"));
+                answerWrapper.append($("<button>").addClass("button col-2").text(i+1));
+                answerWrapper.append($("<span>").addClass("col-9").html(data.results[0].correct_answer));
+                triviaWrapperEl.append(answerWrapper);
+                console.log(currentAnswerRow);
+            }
+
+            // appends created elements together and then to the random-element-container
+            triviaRowEl.append(triviaWrapperEl);
+            $("#trivia-row").html(triviaWrapperEl);
+        });
+    });
+}
+
+var x = [jokeRandom, randomActivity, randomFoodPic, randomAdvice, randomQuote, triviaRandom];
 
 for (var i = 0; i < x.length; i++) {
     x[i]();
