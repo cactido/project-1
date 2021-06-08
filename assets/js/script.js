@@ -232,7 +232,7 @@ function checkTriviaAnswer (answer, correctAnswer) {
     }
 }
 
-var x = [triviaRandom, randomQuote];
+var x = [triviaRandom, randomQuote, jokeRandom, randomFoodPic, randomActivity, randomAdvice];
 
 for (var i = 0; i < x.length; i++) {
     x[i]();
