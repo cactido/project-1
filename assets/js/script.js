@@ -1,3 +1,12 @@
+// Variable to format date
+var date = new Date();
+var dateDay = date.getDate();
+var dateMonth = date.getMonth();
+var dateYear = date.getFullYear();
+
+const formattedDate = `${dateMonth}/${dateDay}/${dateYear}`;
+$('#todaysDate').text(formattedDate);
+
 // Creating Variable to target main element
 var containerEl = $("#random-element-container");
 
