@@ -171,31 +171,68 @@ var triviaRandom = function() {
             // creates answer rows
             triviaWrapperEl.append(questionEl);
 
-            var answerSelections = ["True", "False"];
+            var answerSelections = ["A", "B","C","D"];
             var numberOfAnswers = 2;
+
             if (data.results[0].type == "multiple") {
-                var numberOfAnswers = 4; 
+                var numberOfAnswers = 4;
             }
                         
-            var currentAnswerRow = 0;
             var answerWrapper = $("<div>").addClass("col-12");
-            
+
+            //get randomized position for correct answer and create a tracking variable for incorrect answers
+            var correctAnswerPosition = Math.floor(Math.random() * numberOfAnswers);
+            var incorrectAnswerTrack = 0;
+
             for (let i = 0; i < numberOfAnswers; i++) {
                 answerWrapper.append($("<div>").addClass("row"));
-                answerWrapper.append($("<button>").addClass("button col-2").text(i+1));
-                answerWrapper.append($("<span>").addClass("col-9").html(data.results[0].correct_answer));
+                answerWrapper.append($("<button>").addClass("button col-2").attr("id","answer-btn-" + i).text(answerSelections[i]));
+                //place correct answer on random row and fill incorrect answers around it
+                if (i == correctAnswerPosition) {
+                    answerWrapper.append($("<span>").addClass("col-9").attr("id","answer-" + i).html(data.results[0].correct_answer));
+                } else {
+                    answerWrapper.append($("<span>").addClass("col-9").attr("id","answer-" + i).html(data.results[0].incorrect_answers[incorrectAnswerTrack]));
+                    incorrectAnswerTrack++;
+                }
                 triviaWrapperEl.append(answerWrapper);
-                console.log(currentAnswerRow);
             }
+
+            answerWrapper.append($("<div>").addClass("row justify-content-center"));
+            answerWrapper.append($("<button>").addClass("button col-9").attr("id","trivia-rerand").text("Try another question?"));
 
             // appends created elements together and then to the random-element-container
             triviaRowEl.append(triviaWrapperEl);
             $("#trivia-row").html(triviaWrapperEl);
+
+            $("main").on("click","button",function(){
+                switch ($(this).attr("id")) {
+                    case "answer-btn-0":
+                        $(this).text(checkTriviaAnswer(0, correctAnswerPosition));
+                        break;
+                    case "answer-btn-1":
+                        $(this).text(checkTriviaAnswer(1, correctAnswerPosition));
+                        break;
+                    case "answer-btn-2":
+                        $(this).text(checkTriviaAnswer(2, correctAnswerPosition));
+                        break;
+                     case "answer-btn-3":
+                        $(this).text(checkTriviaAnswer(3, correctAnswerPosition));
+                        break;       
+                }
+            })
         });
     });
 }
 
-var x = [triviaRandom];
+function checkTriviaAnswer (answer, correctAnswer) {
+    if (answer == correctAnswer) {
+        return "Correct";
+    } else {
+        return "Incorrect";
+    }
+}
+
+var x = [triviaRandom, randomQuote];
 
 for (var i = 0; i < x.length; i++) {
     x[i]();
@@ -218,5 +255,8 @@ $("main").on("click","button",function(){
         case "quote-rerand":
             randomQuote();
             break;
+        case "trivia-rerand":
+            triviaRandom();
+            break; 
     }
 })
