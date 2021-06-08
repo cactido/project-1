@@ -2,54 +2,62 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+h1 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-bottom: 20px;
+}
+
+/* container holding all content styling*/
+.content-container {
+    border: solid 3px #000;
+    border-radius: 10px;
+    padding: 0 0 70% 0;
+    margin: 0 30px;
+}
+
 .title-container h3{
     font-weight: bolder;
-    
 }
 
 .container {
     justify-content: center;
-    padding: 0;
-    border: solid 3px #000;
 }
 
-.container h1 {
-    
-}
-
-.title-container {
-
-}
-
+/* container for appended api content styling */
 .content-wrapper {
     flex-wrap: wrap;
-    border: solid 2px #000;
-    border-radius: 5px;
 }
 
+/* styling for date container */
 .date-holder {
-    background-color: whitesmoke;
+    background-color: rgb(196, 192, 192);
     display: inline-flex;
-    width: 100%;
+    width: 90%;
+    margin: auto 25px 10px 60px;
+    border: solid 2px #000;
+    border-radius: 5px;
     
 }
 
 .current-date {
-    margin: auto auto auto 470px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: auto auto auto 500px;
     justify-content: center;
-    border-radius: 5px;
+    border: 4px solid rgb(196, 192, 192);
+    border-radius: 7px;
     padding: 10px 30px 10px 30px;
     background-color: white;
-}
-
-.modal-btn {
-    justify-content: flex-end;
-
-    
-    
 }
 
 .btn {
     color: gray;
     border: solid 2px #000;
+}
+
+.modal-btn {
+    background-color: black;
+    border: 3px solid rgb(196, 192, 192);
+    border-radius: 6px;
+    justify-content: flex-end;
+    color: whitesmoke;
 }
