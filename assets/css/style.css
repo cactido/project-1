@@ -1,0 +1,63 @@
+* body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-bottom: 20px;
+}
+
+/* container holding all content styling*/
+.content-container {
+    border: solid 3px #000;
+    border-radius: 10px;
+    padding: 0 0 50% 0;
+    margin: 0 60px;
+}
+
+.title-container h3{
+    font-weight: bolder;
+}
+
+.container {
+    justify-content: center;
+}
+
+/* container for appended api content styling */
+.content-wrapper {
+    flex-wrap: wrap;
+}
+
+/* styling for date container */
+.date-holder {
+    background-color: rgb(196, 192, 192);
+    display: inline-flex;
+    width: 90%;
+    margin: auto 25px 10px 90px;
+    border: solid 2px #000;
+    border-radius: 5px;
+    
+}
+
+.current-date {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: auto auto auto 675px;
+    justify-content: center;
+    border: 4px solid rgb(196, 192, 192);
+    border-radius: 7px;
+    padding: 10px 30px 10px 30px;
+    background-color: white;
+}
+
+.btn {
+    color: gray;
+    border: solid 2px #000;
+}
+
+.modal-btn {
+    background-color: black;
+    border: 3px solid rgb(196, 192, 192);
+    border-radius: 6px;
+    justify-content: flex-end;
+    color: whitesmoke;
+}
