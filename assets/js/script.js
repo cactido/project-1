@@ -1,3 +1,12 @@
+// Variable to format date
+var date = new Date();
+var dateDay = date.getDate();
+var dateMonth = date.getMonth();
+var dateYear = date.getFullYear();
+
+const formattedDate = `${dateMonth}/${dateDay}/${dateYear}`;
+$('#todaysDate').text(formattedDate);
+
 // Creating Variable to target main element
 var containerEl = $("#random-element-container");
 // variable for storing the functions into
@@ -240,6 +249,36 @@ var x = [triviaRandom, randomQuote, jokeRandom, randomFoodPic, randomActivity, r
 // for (var i = 0; i < x.length; i++) {
 //     x[i]();
 // }
+var displayElements = [];
+
+//adds local saved layout if it exists
+if (localStorage.getItem("display") != null) {
+    displayElements = JSON.parse(localStorage.getItem("display"));
+}
+
+console.log(displayElements);
+
+//initialize layout
+for (var i = 0; i < displayElements.length; i++) {
+     if (displayElements[i] == "jokeRandom") {
+         jokeRandom();
+     }
+     if (displayElements[i] == "randomActivity") {
+         randomActivity();
+     }
+     if (displayElements[i] == "randomFoodPic") {
+         randomFoodPic();
+     }
+     if (displayElements[i] == "randomAdvice") {
+         randomAdvice();
+     }
+     if (displayElements[i] == "triviaRandom") {
+         triviaRandom();
+     }
+     if (displayElements[i] == "randomQuote") {
+         randomQuote();
+     }
+}
 
 // checks the main function for when a button is pushed
 $("main").on("click","button",function(){
@@ -297,22 +336,46 @@ $("#random-options-modal .btn-accept").click(function(){
     // switch that runs the function based off of the value of what option is currently in the select
     switch ($("#option-item-select").val()){
         case "random-joke":
-            jokeRandom();
+            if (displayElements.includes("jokeRandom") == false) {
+                displayElements.push("jokeRandom");
+                localStorage.setItem("display", JSON.stringify(displayElements));
+                jokeRandom();
+            }
             break;
         case "random-activity":
-            randomActivity();
+            if (displayElements.includes("randomActivity") == false) {
+                displayElements.push("randomActivity");
+                localStorage.setItem("display", JSON.stringify(displayElements));
+                randomActivity();
+            }
             break;
         case "random-food-pic":
-            randomFoodPic();
+            if (displayElements.includes("jokeRandom") == false) {
+                displayElements.push("jokeRandom");
+                localStorage.setItem("display", JSON.stringify(displayElements));
+                randomFoodPic();
+            }
             break;
         case "random-advice":
-            randomAdvice();
+            if (displayElements.includes("randomAdvice") == false) {
+                displayElements.push("randomAdvice");
+                localStorage.setItem("display", JSON.stringify(displayElements));
+                randomAdvice();
+            }
             break;
         case "random-quote":
-            randomQuote();
+            if (displayElements.includes("randomQuote") == false) {
+                displayElements.push("randomQuote");
+                localStorage.setItem("display", JSON.stringify(displayElements));
+                randomQuote();
+            }
             break;
         case "random-trivia":
-            triviaRandom();
+            if (displayElements.includes("triviaRandom") == false) {
+                displayElements.push("triviaRandom");
+                localStorage.setItem("display", JSON.stringify(displayElements));
+                triviaRandom();
+            }
             break;
     }
     $("#random-options-modal").modal("hide");
