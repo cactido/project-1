@@ -52,9 +52,11 @@ var randomActivity = function() {
             // creates a div with the column classes to hold the activity
             var activityColEl = $("<div>").addClass("col-12 col-md-8").text("Here's something to try: " + data.activity);
             // creates a button that will be used to get some more activity
-            var buttonEl = $("<button>").addClass("button col-12 col-md-4").attr("id","activity-rerand").text("Want Another Activity?");
+            var buttonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","activity-rerand").text("Want Another Activity?");
+             // creates a button that will delete a random element
+             var deleteButtonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","delete-activity").text("Remove Element");
             // appends created elements together and then to the random-element-container
-            activityRowEl.append(activityColEl, buttonEl);
+            activityRowEl.append(activityColEl, buttonEl, deleteButtonEl);
             $("#activity-row").html(activityRowEl);
         });
     });
@@ -75,9 +77,11 @@ var randomFoodPic = function() {
             // creates and img element
             var foodImgEl = $("<img>").attr("src", data.image).addClass("img-fluid");
             // creates a button element
-            var buttonEl = $("<button>").addClass("button col-12").attr("id","food-pic-rerand").text("Want Another Food Picture?");
+            var buttonEl = $("<button>").addClass("button col-6").attr("id","food-pic-rerand").text("Want Another Food Picture?");
+             // creates a button that will delete a random element
+             var deleteButtonEl = $("<button>").addClass("button col-6").attr("id","delete-food-pic").text("Remove Element");
             // appends created elements together and then to the random-element-container
-            foodRowEl.append(foodImgEl, buttonEl);
+            foodRowEl.append(foodImgEl, buttonEl, deleteButtonEl);
             $("#food-pic-row").html(foodRowEl);
         })
     })
@@ -98,9 +102,11 @@ var randomAdvice = function() {
             // creates a div with the column classes to hold the advice
             var adviceColEl = $("<div>").addClass("col-12 col-md-8").text("Here is some advice you didn't ask for: " + data.slip.advice);
             // creates a button that will be used to get some more advice
-            var buttonEl = $("<button>").addClass("button col-12 col-md-4").attr("id","advice-rerand").text("Want Some More Advice?");
+            var buttonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","advice-rerand").text("Want Some More Advice?");
+             // creates a button that will delete a random element
+             var deleteButtonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","delete-advice").text("Remove Element");
             // appends created elements together and then to the random-element-container
-            adviceRowEl.append(adviceColEl, buttonEl);
+            adviceRowEl.append(adviceColEl, buttonEl, deleteButtonEl);
             $("#advice-row").html(adviceRowEl);
         })
     })
@@ -124,10 +130,12 @@ var randomQuote = function() {
             var quoteEl = $("<div>").addClass("quote").text(data.content);
             var authorEl = $("<div>").addClass("author").text("Quote By " + data.author);
             // creates a button that will be used to get another quote
-            var buttonEl = $("<button>").addClass("button col-12 col-md-4").attr("id","quote-rerand").text("Another quote?");
+            var buttonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","quote-rerand").text("Another quote?");
+             // creates a button that will delete a random element
+             var deleteButtonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","delete-quote").text("Remove Element");
             // appends created elements together and then to the random-element-container
             quotewrapperEl.append(quoteEl, authorEl);
-            quoteRowEl.append(quotewrapperEl, buttonEl);
+            quoteRowEl.append(quotewrapperEl, buttonEl, deleteButtonEl);
             $("#quote-row").html(quoteRowEl);
         })
     })
@@ -180,7 +188,9 @@ var triviaRandom = function() {
             }
 
             answerWrapper.append($("<div>").addClass("row justify-content-center"));
-            answerWrapper.append($("<button>").addClass("button col-9").attr("id","trivia-rerand").text("Try another question?"));
+            answerWrapper.append($("<button>").addClass("button col-6 col-md-2").attr("id","trivia-rerand").text("Try another question?"));
+             // creates a button that will delete a random element
+            answerWrapper.append($("<button>").addClass("button col-6 col-md-2").attr("id","delete-trivia").text("Remove Element"));
 
             // appends created elements together and then to the random-element-container
             triviaRowEl.append(triviaWrapperEl);
@@ -216,8 +226,14 @@ function checkTriviaAnswer (answer, correctAnswer) {
 
 var deleteElement = function(event) {
     var target = $(event).attr("id").split('-');
+    // checks the length of the split array then removes the element
+    if (target.length === 3){
+        console.log(target);
+        $("#" + target[1] + "-" + target[2] + "-row").remove();
+    } else {
     console.log(target[1]);
     $("#" + target[1] + '-row').remove();
+    }
 }
 
 var x = [triviaRandom, randomQuote, jokeRandom, randomFoodPic, randomActivity, randomAdvice];
@@ -258,6 +274,21 @@ $("main").on("click","button",function(){
         case "delete-joke":
            deleteElement(this);
            break;
+        case "delete-activity":
+            deleteElement(this);
+            break;
+        case "delete-food-pic":
+            deleteElement(this);
+            break;
+        case "delete-advice":
+            deleteElement(this);
+            break;
+        case "delete-quote":
+            deleteElement(this);
+            break;
+        case "delete-trivia":
+            deleteElement(this);
+            break;
     }
 })
 
