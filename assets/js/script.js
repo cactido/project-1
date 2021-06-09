@@ -44,8 +44,9 @@ var randomXKCD = function() {
     } else {
         xRand = xRand + "/info.0.json";
     }
+    var corsAny = "https://cors-anywhere.herokuapp.com/";
     // creates apiURL with the completed xRand
-    var apiURL = "http://xkcd.com/" + xRand
+    var apiURL =corsAny + "http://xkcd.com/" + xRand;
     // fetches a comic with the created url
     fetch(apiURL).then(function(res){
         res.json().then(function(data){
@@ -253,3 +254,5 @@ $("#random-options-modal .btn-accept").click(function(){
     }
     $("#random-options-modal").modal("hide");
 })
+
+randomXKCD();
