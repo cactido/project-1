@@ -61,3 +61,43 @@ h1 {
     justify-content: flex-end;
     color: whitesmoke;
 }
+
+.modal-header {
+    background: rgb(138, 36, 36);
+}
+
+.modal-title {
+    color: whitesmoke;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+}
+
+.modal-footer {
+    background: whitesmoke;
+}
+
+#option-item-select {
+    border: 2px solid black;
+    background: rgb(247, 247, 247);
+}
+
+.btn-cancel {
+    color: rgb(48, 47, 47);
+    background: rgb(238, 238, 238);
+}
+.btn-cancel:hover {
+    color: rgb(48, 47, 47);
+    background: lightgray;
+}
+
+.btn-accept {
+    color: rgb(48, 47, 47);
+    background: rgb(238, 238, 238);
+
+}
+
+.btn-accept:hover {
+    color: rgb(48, 47, 47);
+    background: lightgray;
+
+}
