@@ -1,5 +1,7 @@
 // Creating Variable to target main element
 var containerEl = $("#random-element-container");
+// variable for storing the functions into
+var displayElements = [];
 
 // Fetches a random joke could expand to give the user the ability to filter by programming or general?
 // Documentation here: https://github.com/15Dkatz/official_joke_api
@@ -22,38 +24,16 @@ var jokeRandom = function() {
             var setUpEl = $("<div>").addClass("joke").text("Setup: " + data.setup);
             var punchLineEl = $("<div>").addClass("punch-line").text("Punchline: " + data.punchline);
             // creates a button that will be used to get another joke
-            var buttonEl = $("<button>").addClass("button col-12 col-md-4").attr("id","joke-rerand").text("Another Joke?");
+            var buttonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","joke-rerand").text("Another Joke?");
+            // creates a button that will delete a random element
+            var deleteButtonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","delete-joke").text("Remove Element");
             // appends created elements together and then to the random-element-container
             jokewrapperEl.append(setUpEl, punchLineEl);
-            jokeRowEl.append(jokewrapperEl, buttonEl);
+            jokeRowEl.append(jokewrapperEl, buttonEl, deleteButtonEl);
             $("#joke-row").html(jokeRowEl);
         });
     });
 }
-// Grabs a random XKCD comic. Currently having and issue with CORS so currently implementing this is on the backburner
-// Documentation here:
-
-// Ignore for now
-var randomXKCD = function() {
-    // creates a random number between 0-614
-    var xRand = Math.floor(Math.random()*615);
-    console.log(xRand);
-    // checks if the number is zero if yes overwrites with end of url if no concatenates end of url
-    if (xRand === 0){
-        xRand = "info.0.json";
-    } else {
-        xRand = xRand + "/info.0.json";
-    }
-    // creates apiURL with the completed xRand
-    var apiURL = "http://xkcd.com/" + xRand
-    // fetches a comic with the created url
-    fetch(apiURL).then(function(res){
-        res.json().then(function(data){
-            console.log(data);
-        });
-    });
-}
-// Ignore for now
 
 // fetches a random activity, can display this as "Random Activity for Later" and maybe put in options to filter by type
 // documentation here: https://www.boredapi.com/documentation
@@ -234,6 +214,12 @@ function checkTriviaAnswer (answer, correctAnswer) {
     }
 }
 
+var deleteElement = function(event) {
+    var target = $(event).attr("id").split('-');
+    console.log(target[1]);
+    $("#" + target[1] + '-row').remove();
+}
+
 var x = [triviaRandom, randomQuote, jokeRandom, randomFoodPic, randomActivity, randomAdvice];
 // for (var i = 0; i < x.length; i++) {
 //     x[i]();
@@ -243,6 +229,7 @@ var x = [triviaRandom, randomQuote, jokeRandom, randomFoodPic, randomActivity, r
 $("main").on("click","button",function(){
     // switch to run functions based off the id of the button that was pushed
     switch ($(this).attr("id")) {
+        // rerand button cases start
         case "joke-rerand":
             jokeRandom();
             break;
@@ -261,9 +248,16 @@ $("main").on("click","button",function(){
         case "trivia-rerand":
             triviaRandom();
             break; 
+        // rerand button cases end
+        // edit button case start
         case "edit-modal": 
             $("#random-options-modal").modal("show");
             break;
+        // edit button case end
+        // delete button case start
+        case "delete-joke":
+           deleteElement(this);
+           break;
     }
 })
 
