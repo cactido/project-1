@@ -245,10 +245,6 @@ var deleteElement = function(event) {
     }
 }
 
-var x = [triviaRandom, randomQuote, jokeRandom, randomFoodPic, randomActivity, randomAdvice];
-// for (var i = 0; i < x.length; i++) {
-//     x[i]();
-// }
 var displayElements = [];
 
 //adds local saved layout if it exists
@@ -312,21 +308,51 @@ $("main").on("click","button",function(){
         // delete button case start
         case "delete-joke":
            deleteElement(this);
+           var funInd = displayElements.indexOf("jokeRandom");
+           if (funInd > -1){
+               displayElements.splice(funInd, 1);
+               localStorage.setItem("display", JSON.stringify(displayElements));
+           }
            break;
         case "delete-activity":
             deleteElement(this);
+            var funInd = displayElements.indexOf("randomActivity");
+            if (funInd > -1){
+                displayElements.splice(funInd, 1);
+                localStorage.setItem("display", JSON.stringify(displayElements));
+            }
             break;
         case "delete-food-pic":
             deleteElement(this);
+            var funInd = displayElements.indexOf("randomFoodPic");
+            if (funInd > -1){
+                displayElements.splice(funInd, 1);
+                localStorage.setItem("display", JSON.stringify(displayElements));
+            }
             break;
         case "delete-advice":
             deleteElement(this);
+            var funInd = displayElements.indexOf("randomAdvice");
+            if (funInd > -1){
+                displayElements.splice(funInd, 1);
+                localStorage.setItem("display", JSON.stringify(displayElements));
+            }
             break;
         case "delete-quote":
             deleteElement(this);
+            var funInd = displayElements.indexOf("randomQuote");
+            if (funInd > -1){
+                displayElements.splice(funInd, 1);
+                localStorage.setItem("display", JSON.stringify(displayElements));
+            }
             break;
         case "delete-trivia":
             deleteElement(this);
+            var funInd = displayElements.indexOf("triviaRandom");
+            if (funInd > -1){
+                displayElements.splice(funInd, 1);
+                localStorage.setItem("display", JSON.stringify(displayElements));
+            }
             break;
     }
 })
@@ -350,8 +376,8 @@ $("#random-options-modal .btn-accept").click(function(){
             }
             break;
         case "random-food-pic":
-            if (displayElements.includes("jokeRandom") == false) {
-                displayElements.push("jokeRandom");
+            if (displayElements.includes("randomFoodPic") == false) {
+                displayElements.push("randomFoodPic");
                 localStorage.setItem("display", JSON.stringify(displayElements));
                 randomFoodPic();
             }
