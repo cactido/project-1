@@ -4,15 +4,16 @@ var containerEl = $("#random-element-container");
 // Fetches a random joke could expand to give the user the ability to filter by programming or general?
 // Documentation here: https://github.com/15Dkatz/official_joke_api
 var jokeRandom = function() {
+    // checks if div with associated id exists, empties it if it does or creates it if it doesn't
+    if ($("#joke-row") == true){
+        $("#joke-row").empty();
+    } else {
+        containerEl.append($("<div>").attr("id","joke-row"));
+    }
+
     fetch("https://official-joke-api.appspot.com/random_joke")
     .then(function(res) {
         res.json().then(function(data){
-            // checks if div with associated id exists, empties it if it does or creates it if it doesn't
-            if ($("#joke-row") == true){
-                $("#joke-row").empty();
-            } else {
-                containerEl.append($("<div>").attr("id","joke-row"));
-            }
             // creates a div with the class row and id of joke-row
             var jokeRowEl = $("<div>").addClass("row").attr("id","joke-row");
             // creates a div with the column classes to hold the joke
@@ -57,14 +58,15 @@ var randomXKCD = function() {
 // fetches a random activity, can display this as "Random Activity for Later" and maybe put in options to filter by type
 // documentation here: https://www.boredapi.com/documentation
 var randomActivity = function() {
+    // checks if div with associated id exists, empties it if it does or creates it if it doesn't
+    if ($("#activity-row") == true){
+        $("#activity-row").empty();
+    } else {
+        containerEl.append($("<div>").attr("id","activity-row"));            
+    }
+
     fetch("http://www.boredapi.com/api/activity/").then(function(res){
-            // checks if div with associated id exists, empties it if it does or creates it if it doesn't
             res.json().then(function(data){
-            if ($("#activity-row") == true){
-                $("#activity-row").empty();
-            } else {
-                containerEl.append($("<div>").attr("id","activity-row"));            
-            }
             // creates a div with the class row and id of activity-row
             var activityRowEl = $("<div>").addClass("row").attr("id","activity-row");
             // creates a div with the column classes to hold the activity
@@ -80,14 +82,14 @@ var randomActivity = function() {
 // Gets a Random picture of food
 // Documentation Here: https://github.com/surhud004/Foodish#readme
 var randomFoodPic = function() {
+    // checks if div with associated id exists, empties it if it does or creates it if it doesn't
+    if ($("#food-pic-row") == true){
+        $("#food-pic-row").empty();
+    } else {
+        containerEl.append($("<div>").attr("id","food-pic-row"));
+    }
     fetch("https://foodish-api.herokuapp.com/api/").then(function(res){
         res.json().then(function(data){
-            // checks if div with associated id exists, empties it if it does or creates it if it doesn't
-            if ($("#food-pic-row") == true){
-                $("#food-pic-row").empty();
-            } else {
-                containerEl.append($("<div>").attr("id","food-pic-row"));
-            }
             // creates div with class of row and id of food-pic-row for the img and button to go in
             var foodRowEl = $("<div>").addClass("row").attr("id","food-pic-row");
             // creates and img element
@@ -103,14 +105,14 @@ var randomFoodPic = function() {
 // Get some random advice
 // Documentation Here: https://api.adviceslip.com/#top
 var randomAdvice = function() {
+    // checks if div with associated id exists, empties it if it does or creates it if it doesn't
+    if ($("#advice-row") == true){
+        $("#advice-row").empty();
+    } else {
+        containerEl.append($("<div>").attr("id","advice-row"));
+    }
     fetch("https://api.adviceslip.com/advice",{cache: "no-cache"}).then(function(res){
         res.json().then(function(data){
-            // checks if div with associated id exists, empties it if it does or creates it if it doesn't
-            if ($("#advice-row") == true){
-                $("#advice-row").empty();
-            } else {
-                containerEl.append($("<div>").attr("id","advice-row"));
-            }
             // creates a div with the class row and id of advice-row
             var adviceRowEl = $("<div>").addClass("row").attr("id","advice-row");
             // creates a div with the column classes to hold the advice
@@ -126,14 +128,14 @@ var randomAdvice = function() {
 // Gets a random Quote
 // Documentation Here: https://github.com/lukePeavey/quotable
 var randomQuote = function() {
+    // checks if div with associated id exists, empties it if it does or creates it if it doesn't
+    if ($("#quote-row") == true){
+        $("#quote-row").empty();
+    } else {
+        containerEl.append($("<div>").attr("id","quote-row"));
+    }
     fetch("https://api.quotable.io/random").then(function(res){
         res.json().then(function(data){
-            // checks if div with associated id exists, empties it if it does or creates it if it doesn't
-            if ($("#quote-row") == true){
-                $("#quote-row").empty();
-            } else {
-                containerEl.append($("<div>").attr("id","quote-row"));
-            }
             // creates a div with the class row and id of quote-row
             var quoteRowEl = $("<div>").addClass("row").attr("id","quote-row");
             // creates a div with the column classes to hold the quote
@@ -154,14 +156,14 @@ var randomQuote = function() {
 // Gets random trivia question could give user option to filter by category, true false, etc.
 // Documentation here: https://opentdb.com/api_config.php
 var triviaRandom = function() {
+    // checks if div with associated id exists, empties it if it does or creates it if it doesn't
+    if ($("#trivia-row") == true){
+        $("#trivia-row").empty();
+    } else {
+        containerEl.append($("<div>").attr("id","trivia-row"));
+    }
     fetch("https://opentdb.com/api.php?amount=1").then(function(res){
         res.json().then(function(data){
-            // checks if div with associated id exists, empties it if it does or creates it if it doesn't
-            if ($("#trivia-row") == true){
-                $("#trivia-row").empty();
-            } else {
-                containerEl.append($("<div>").attr("id","trivia-row"));
-            }
             // creates a div with the class row and id of triva-row
             var triviaRowEl = $("<div>").addClass("row").attr("id","trivia-row");
             // creates a div with the column classes to hold the question and answers
@@ -233,12 +235,13 @@ function checkTriviaAnswer (answer, correctAnswer) {
 }
 
 var x = [triviaRandom, randomQuote, jokeRandom, randomFoodPic, randomActivity, randomAdvice];
+// for (var i = 0; i < x.length; i++) {
+//     x[i]();
+// }
 
-for (var i = 0; i < x.length; i++) {
-    x[i]();
-}
-
+// checks the main function for when a button is pushed
 $("main").on("click","button",function(){
+    // switch to run functions based off the id of the button that was pushed
     switch ($(this).attr("id")) {
         case "joke-rerand":
             jokeRandom();
@@ -258,5 +261,34 @@ $("main").on("click","button",function(){
         case "trivia-rerand":
             triviaRandom();
             break; 
+        case "edit-modal": 
+            $("#random-options-modal").modal("show");
+            break;
     }
+})
+
+// listener to handle when the accept button is pressed in the modal window
+$("#random-options-modal .btn-accept").click(function(){
+    // switch that runs the function based off of the value of what option is currently in the select
+    switch ($("#option-item-select").val()){
+        case "random-joke":
+            jokeRandom();
+            break;
+        case "random-activity":
+            randomActivity();
+            break;
+        case "random-food-pic":
+            randomFoodPic();
+            break;
+        case "random-advice":
+            randomAdvice();
+            break;
+        case "random-quote":
+            randomQuote();
+            break;
+        case "random-trivia":
+            triviaRandom();
+            break;
+    }
+    $("#random-options-modal").modal("hide");
 })
