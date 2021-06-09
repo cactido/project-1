@@ -9,6 +9,8 @@ $('#todaysDate').text(formattedDate);
 
 // Creating Variable to target main element
 var containerEl = $("#random-element-container");
+// variable for storing the functions into
+var displayElements = [];
 
 // Fetches a random joke could expand to give the user the ability to filter by programming or general?
 // Documentation here: https://github.com/15Dkatz/official_joke_api
@@ -31,38 +33,16 @@ var jokeRandom = function() {
             var setUpEl = $("<div>").addClass("joke").text("Setup: " + data.setup);
             var punchLineEl = $("<div>").addClass("punch-line").text("Punchline: " + data.punchline);
             // creates a button that will be used to get another joke
-            var buttonEl = $("<button>").addClass("button col-12 col-md-4").attr("id","joke-rerand").text("Another Joke?");
+            var buttonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","joke-rerand").text("Another Joke?");
+            // creates a button that will delete a random element
+            var deleteButtonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","delete-joke").text("Remove Element");
             // appends created elements together and then to the random-element-container
             jokewrapperEl.append(setUpEl, punchLineEl);
-            jokeRowEl.append(jokewrapperEl, buttonEl);
+            jokeRowEl.append(jokewrapperEl, buttonEl, deleteButtonEl);
             $("#joke-row").html(jokeRowEl);
         });
     });
 }
-// Grabs a random XKCD comic. Currently having and issue with CORS so currently implementing this is on the backburner
-// Documentation here:
-
-// Ignore for now
-var randomXKCD = function() {
-    // creates a random number between 0-614
-    var xRand = Math.floor(Math.random()*615);
-    console.log(xRand);
-    // checks if the number is zero if yes overwrites with end of url if no concatenates end of url
-    if (xRand === 0){
-        xRand = "info.0.json";
-    } else {
-        xRand = xRand + "/info.0.json";
-    }
-    // creates apiURL with the completed xRand
-    var apiURL = "http://xkcd.com/" + xRand
-    // fetches a comic with the created url
-    fetch(apiURL).then(function(res){
-        res.json().then(function(data){
-            console.log(data);
-        });
-    });
-}
-// Ignore for now
 
 // fetches a random activity, can display this as "Random Activity for Later" and maybe put in options to filter by type
 // documentation here: https://www.boredapi.com/documentation
@@ -81,9 +61,11 @@ var randomActivity = function() {
             // creates a div with the column classes to hold the activity
             var activityColEl = $("<div>").addClass("col-12 col-md-8").text("Here's something to try: " + data.activity);
             // creates a button that will be used to get some more activity
-            var buttonEl = $("<button>").addClass("button col-12 col-md-4").attr("id","activity-rerand").text("Want Another Activity?");
+            var buttonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","activity-rerand").text("Want Another Activity?");
+             // creates a button that will delete a random element
+             var deleteButtonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","delete-activity").text("Remove Element");
             // appends created elements together and then to the random-element-container
-            activityRowEl.append(activityColEl, buttonEl);
+            activityRowEl.append(activityColEl, buttonEl, deleteButtonEl);
             $("#activity-row").html(activityRowEl);
         });
     });
@@ -104,9 +86,11 @@ var randomFoodPic = function() {
             // creates and img element
             var foodImgEl = $("<img>").attr("src", data.image).addClass("img-fluid");
             // creates a button element
-            var buttonEl = $("<button>").addClass("button col-12").attr("id","food-pic-rerand").text("Want Another Food Picture?");
+            var buttonEl = $("<button>").addClass("button col-6").attr("id","food-pic-rerand").text("Want Another Food Picture?");
+             // creates a button that will delete a random element
+             var deleteButtonEl = $("<button>").addClass("button col-6").attr("id","delete-food-pic").text("Remove Element");
             // appends created elements together and then to the random-element-container
-            foodRowEl.append(foodImgEl, buttonEl);
+            foodRowEl.append(foodImgEl, buttonEl, deleteButtonEl);
             $("#food-pic-row").html(foodRowEl);
         })
     })
@@ -127,9 +111,11 @@ var randomAdvice = function() {
             // creates a div with the column classes to hold the advice
             var adviceColEl = $("<div>").addClass("col-12 col-md-8").text("Here is some advice you didn't ask for: " + data.slip.advice);
             // creates a button that will be used to get some more advice
-            var buttonEl = $("<button>").addClass("button col-12 col-md-4").attr("id","advice-rerand").text("Want Some More Advice?");
+            var buttonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","advice-rerand").text("Want Some More Advice?");
+             // creates a button that will delete a random element
+             var deleteButtonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","delete-advice").text("Remove Element");
             // appends created elements together and then to the random-element-container
-            adviceRowEl.append(adviceColEl, buttonEl);
+            adviceRowEl.append(adviceColEl, buttonEl, deleteButtonEl);
             $("#advice-row").html(adviceRowEl);
         })
     })
@@ -153,10 +139,12 @@ var randomQuote = function() {
             var quoteEl = $("<div>").addClass("quote").text(data.content);
             var authorEl = $("<div>").addClass("author").text("Quote By " + data.author);
             // creates a button that will be used to get another quote
-            var buttonEl = $("<button>").addClass("button col-12 col-md-4").attr("id","quote-rerand").text("Another quote?");
+            var buttonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","quote-rerand").text("Another quote?");
+             // creates a button that will delete a random element
+             var deleteButtonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","delete-quote").text("Remove Element");
             // appends created elements together and then to the random-element-container
             quotewrapperEl.append(quoteEl, authorEl);
-            quoteRowEl.append(quotewrapperEl, buttonEl);
+            quoteRowEl.append(quotewrapperEl, buttonEl, deleteButtonEl);
             $("#quote-row").html(quoteRowEl);
         })
     })
@@ -209,7 +197,9 @@ var triviaRandom = function() {
             }
 
             answerWrapper.append($("<div>").addClass("row justify-content-center"));
-            answerWrapper.append($("<button>").addClass("button col-9").attr("id","trivia-rerand").text("Try another question?"));
+            answerWrapper.append($("<button>").addClass("button col-6 col-md-2").attr("id","trivia-rerand").text("Try another question?"));
+             // creates a button that will delete a random element
+            answerWrapper.append($("<button>").addClass("button col-6 col-md-2").attr("id","delete-trivia").text("Remove Element"));
 
             // appends created elements together and then to the random-element-container
             triviaRowEl.append(triviaWrapperEl);
@@ -240,6 +230,18 @@ function checkTriviaAnswer (answer, correctAnswer) {
         return "Correct";
     } else {
         return "Incorrect";
+    }
+}
+
+var deleteElement = function(event) {
+    var target = $(event).attr("id").split('-');
+    // checks the length of the split array then removes the element
+    if (target.length === 3){
+        console.log(target);
+        $("#" + target[1] + "-" + target[2] + "-row").remove();
+    } else {
+    console.log(target[1]);
+    $("#" + target[1] + '-row').remove();
     }
 }
 
@@ -278,6 +280,7 @@ for (var i = 0; i < displayElements.length; i++) {
 $("main").on("click","button",function(){
     // switch to run functions based off the id of the button that was pushed
     switch ($(this).attr("id")) {
+        // rerand button cases start
         case "joke-rerand":
             jokeRandom();
             break;
@@ -296,8 +299,60 @@ $("main").on("click","button",function(){
         case "trivia-rerand":
             triviaRandom();
             break; 
+        // rerand button cases end
+        // edit button case start
         case "edit-modal": 
             $("#random-options-modal").modal("show");
+            break;
+        // edit button case end
+        // delete button case start
+        case "delete-joke":
+           deleteElement(this);
+           var funInd = displayElements.indexOf("jokeRandom");
+           if (funInd > -1){
+               displayElements.splice(funInd, 1);
+               localStorage.setItem("display", JSON.stringify(displayElements));
+           }
+           break;
+        case "delete-activity":
+            deleteElement(this);
+            var funInd = displayElements.indexOf("randomActivity");
+            if (funInd > -1){
+                displayElements.splice(funInd, 1);
+                localStorage.setItem("display", JSON.stringify(displayElements));
+            }
+            break;
+        case "delete-food-pic":
+            deleteElement(this);
+            var funInd = displayElements.indexOf("randomFoodPic");
+            if (funInd > -1){
+                displayElements.splice(funInd, 1);
+                localStorage.setItem("display", JSON.stringify(displayElements));
+            }
+            break;
+        case "delete-advice":
+            deleteElement(this);
+            var funInd = displayElements.indexOf("randomAdvice");
+            if (funInd > -1){
+                displayElements.splice(funInd, 1);
+                localStorage.setItem("display", JSON.stringify(displayElements));
+            }
+            break;
+        case "delete-quote":
+            deleteElement(this);
+            var funInd = displayElements.indexOf("randomQuote");
+            if (funInd > -1){
+                displayElements.splice(funInd, 1);
+                localStorage.setItem("display", JSON.stringify(displayElements));
+            }
+            break;
+        case "delete-trivia":
+            deleteElement(this);
+            var funInd = displayElements.indexOf("triviaRandom");
+            if (funInd > -1){
+                displayElements.splice(funInd, 1);
+                localStorage.setItem("display", JSON.stringify(displayElements));
+            }
             break;
     }
 })
@@ -321,8 +376,8 @@ $("#random-options-modal .btn-accept").click(function(){
             }
             break;
         case "random-food-pic":
-            if (displayElements.includes("jokeRandom") == false) {
-                displayElements.push("jokeRandom");
+            if (displayElements.includes("randomFoodPic") == false) {
+                displayElements.push("randomFoodPic");
                 localStorage.setItem("display", JSON.stringify(displayElements));
                 randomFoodPic();
             }
