@@ -1,5 +1,6 @@
 * body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: whitesmoke;
 }
 
 h1 {
@@ -11,8 +12,9 @@ h1 {
 .content-container {
     border: solid 3px #000;
     border-radius: 10px;
-    padding: 0 0 50% 0;
+    padding: 0 0 750px 0;
     margin: 0 60px;
+    background: white;
 }
 
 .title-container h3{
@@ -49,6 +51,14 @@ h1 {
     background-color: white;
 }
 
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    background: #000;
+    width: 100%;
+    padding: 40px 35px;
+}
+
 .btn {
     color: gray;
     border: solid 2px #000;
@@ -58,7 +68,6 @@ h1 {
     background-color: black;
     border: 3px solid rgb(196, 192, 192);
     border-radius: 6px;
-    justify-content: flex-end;
     color: whitesmoke;
 }
 
@@ -85,6 +94,7 @@ h1 {
     color: rgb(48, 47, 47);
     background: rgb(238, 238, 238);
 }
+
 .btn-cancel:hover {
     color: rgb(48, 47, 47);
     background: lightgray;
@@ -100,4 +110,218 @@ h1 {
     color: rgb(48, 47, 47);
     background: lightgray;
 
+}
+
+/* media queries */
+@media screen and (max-width: 1700px) { 
+    .content-container {
+        border: solid 3px #000;
+        border-radius: 10px;
+        padding: 0 0 750px 0;
+        margin: 0 60px;
+        background: white;
+    }
+    
+    .date-holder {
+        display: flex;
+        justify-content: space-between;
+        background-color: rgb(196, 192, 192);
+        border: solid 2px #000;
+        border-radius: 5px;
+    }
+
+    .current-date {
+        display: flex;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        margin: auto auto auto 510px;
+        justify-content: center;
+        border: 4px solid rgb(196, 192, 192);
+        border-radius: 7px;
+        padding: 10px 30px 10px 30px;
+        background-color: white;
+    }
+    .modal-btn {
+        background-color: black;
+        border: 3px solid rgb(196, 192, 192);
+        border-radius: 6px;
+        color: whitesmoke;
+    }
+}
+
+@media screen and (max-width: 1400px) { 
+    .content-container {
+        border: solid 3px #000;
+        border-radius: 10px;
+        padding: 0 0 750px 0;
+        margin: 0 60px;
+        background: white;
+    }
+    
+    .date-holder {
+        display: flex;
+        justify-content: space-between;
+        background-color: rgb(196, 192, 192);
+        border: solid 2px #000;
+        border-radius: 5px;
+    }
+
+    .current-date {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        margin: auto auto auto 510px;
+        justify-content: center;
+        border: 4px solid rgb(196, 192, 192);
+        border-radius: 7px;
+        padding: 10px 30px 10px 30px;
+        background-color: white;
+    }
+    .modal-btn {
+        background-color: black;
+        border: 3px solid rgb(196, 192, 192);
+        border-radius: 6px;
+        color: whitesmoke;
+    }
+}
+
+ @media screen and (max-width: 1250px) { 
+    .content-container {
+        border: solid 3px #000;
+        border-radius: 10px;
+        padding: 0 0 750px 0;
+        margin: 0 60px;
+        background: white;
+    }
+    
+    .date-holder {
+        display: flex;
+        justify-content: space-between;
+        background-color: rgb(196, 192, 192);
+        border: solid 2px #000;
+        border-radius: 5px;
+    }
+
+    .current-date {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        margin: auto;
+        justify-content: center;
+        border: 4px solid rgb(196, 192, 192);
+        border-radius: 7px;
+        padding: 10px 30px 10px 30px;
+        background-color: white;
+    }
+    .modal-btn {
+        background-color: black;
+        border: 3px solid rgb(196, 192, 192);
+        border-radius: 6px;
+        color: whitesmoke;
+    }
+}
+
+
+@media screen and (max-width: 980px) { 
+
+    .content-container {
+        border: solid 3px #000;
+        border-radius: 10px;
+        padding: 0 0 750px 0;
+        margin: 0 60px;
+        background: white;
+    }
+    
+    .date-holder {
+        margin: auto;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        background-color: rgb(196, 192, 192);
+        border: solid 2px #000;
+        border-radius: 5px;
+    }
+
+    .current-date {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        margin: auto;
+        justify-content: center;
+        border: 4px solid rgb(196, 192, 192);
+        border-radius: 7px;
+        padding: 10px 30px 10px 30px;
+        background-color: white;
+    }
+    .modal-btn {
+        background-color: black;
+        border: 3px solid rgb(196, 192, 192);
+        border-radius: 6px;
+        color: whitesmoke;
+    }
+}
+
+@media screen and (max-width: 768px) { 
+    .content-container {
+        border: solid 3px #000;
+        border-radius: 10px;
+        padding: 0 0 750px 0;
+        margin: 0 60px;
+        background: white;
+    }
+    
+    .date-holder {
+        margin: auto;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        background-color: rgb(196, 192, 192);
+        border: solid 2px #000;
+        border-radius: 5px;
+    }
+
+    .current-date {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        margin: auto;
+        justify-content: center;
+        border: 4px solid rgb(196, 192, 192);
+        border-radius: 7px;
+        padding: 10px 30px 10px 30px;
+        background-color: white;
+    }
+    .modal-btn {
+        background-color: black;
+        border: 3px solid rgb(196, 192, 192);
+        border-radius: 6px;
+        color: whitesmoke;
+    }
+}
+
+@media screen and (max-width: 575px) { 
+    .content-container {
+        border: solid 3px #000;
+        border-radius: 10px;
+        padding: 0 0 750px 0;
+        margin: 0 60px;
+        background: white;
+    }
+    
+    .date-holder {
+        margin: auto;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        background-color: rgb(196, 192, 192);
+        border: solid 2px #000;
+        border-radius: 5px;
+    }
+
+    .current-date {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        margin: auto;
+        justify-content: center;
+        border: 4px solid rgb(196, 192, 192);
+        border-radius: 7px;
+        padding: 10px 30px 10px 30px;
+        background-color: white;
+    }
+    .modal-btn {
+        background-color: black;
+        border: 3px solid rgb(196, 192, 192);
+        border-radius: 6px;
+        color: whitesmoke;
+    }
 }
