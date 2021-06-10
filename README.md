@@ -26,3 +26,10 @@ Then the random element gets another random item
 When I click the delete button
 Then the random element is removed from the page and the local storage
 ```
+## Deployed Site
+
+Link : https://cactido.github.io/project-1/index.html?=
+
+# Site Image
+
+![image](https://user-images.githubusercontent.com/82060073/121600254-6bf61700-ca01-11eb-804e-252c6816c3b9.png)
