@@ -1,7 +1,7 @@
 // Variable to format date
 var date = new Date();
 var dateDay = date.getDate();
-var dateMonth = date.getMonth();
+var dateMonth = date.getMonth() + 1;
 var dateYear = date.getFullYear();
 
 const formattedDate = `${dateMonth}/${dateDay}/${dateYear}`;
