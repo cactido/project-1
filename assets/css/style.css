@@ -12,7 +12,7 @@ h1 {
 .content-container {
     border: solid 3px #000;
     border-radius: 10px;
-    padding: 0 0 750px 0;
+    padding: 0 0 500px 0;
     margin: 0 60px;
     background: white;
 }
@@ -43,7 +43,7 @@ h1 {
 
 .current-date {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin: auto auto auto 675px;
+    margin: auto;
     justify-content: center;
     border: 4px solid rgb(196, 192, 192);
     border-radius: 7px;
@@ -64,7 +64,7 @@ footer {
     border: solid 2px #000;
 }
 
-.modal-btn {
+.modal-btn, .button {
     background-color: black;
     border: 3px solid rgb(196, 192, 192);
     border-radius: 6px;
@@ -123,17 +123,17 @@ footer {
     }
     
     .date-holder {
-        display: flex;
+        display: inline-flex;
         justify-content: space-between;
         background-color: rgb(196, 192, 192);
         border: solid 2px #000;
         border-radius: 5px;
     }
-
+    
     .current-date {
         display: flex;
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        margin: auto auto auto 510px;
+        margin: auto;
         justify-content: center;
         border: 4px solid rgb(196, 192, 192);
         border-radius: 7px;
@@ -167,7 +167,7 @@ footer {
 
     .current-date {
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        margin: auto auto auto 510px;
+        margin: auto;
         justify-content: center;
         border: 4px solid rgb(196, 192, 192);
         border-radius: 7px;
@@ -291,6 +291,21 @@ footer {
 }
 
 @media screen and (max-width: 575px) { 
+    #todaysDate {
+        font-size: 16px;
+        padding: 2px;
+        margin: 2px 0;
+    }
+
+    #edit-modal {
+        font-size: 16px;
+        margin: 2px 0;
+    }
+
+    .button {
+        font-size: 14px;
+    }
+
     .content-container {
         border: solid 3px #000;
         border-radius: 10px;
