@@ -26,16 +26,16 @@ var jokeRandom = function() {
     .then(function(res) {
         res.json().then(function(data){
             // creates a div with the class row and id of joke-row
-            var jokeRowEl = $("<div>").addClass("row").attr("id","joke-row");
+            var jokeRowEl = $("<div>").addClass("row card border-dark").attr("id","joke-row");
             // creates a div with the column classes to hold the joke
             var jokewrapperEl = $("<div>").addClass("col-12 col-md-8")
             // creates a div for the setup and the punchline
             var setUpEl = $("<div>").addClass("joke").text("Setup: " + data.setup);
             var punchLineEl = $("<div>").addClass("punch-line").text("Punchline: " + data.punchline);
             // creates a button that will be used to get another joke
-            var buttonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","joke-rerand").text("Another Joke?");
+            var buttonEl = $("<button>").addClass("button col-12").attr("id","joke-rerand").text("Another Joke?");
             // creates a button that will delete a random element
-            var deleteButtonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","delete-joke").text("Remove Element");
+            var deleteButtonEl = $("<button>").addClass("button col-12").attr("id","delete-joke").text("Remove Element");
             // appends created elements together and then to the random-element-container
             jokewrapperEl.append(setUpEl, punchLineEl);
             jokeRowEl.append(jokewrapperEl, buttonEl, deleteButtonEl);
@@ -57,13 +57,13 @@ var randomActivity = function() {
     fetch("https://www.boredapi.com/api/activity/").then(function(res){
             res.json().then(function(data){
             // creates a div with the class row and id of activity-row
-            var activityRowEl = $("<div>").addClass("row").attr("id","activity-row");
+            var activityRowEl = $("<div>").addClass("row card border-dark").attr("id","activity-row");
             // creates a div with the column classes to hold the activity
             var activityColEl = $("<div>").addClass("col-12 col-md-8").text("Here's something to try: " + data.activity);
             // creates a button that will be used to get some more activity
-            var buttonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","activity-rerand").text("Want Another Activity?");
+            var buttonEl = $("<button>").addClass("button col-12").attr("id","activity-rerand").text("Want Another Activity?");
              // creates a button that will delete a random element
-             var deleteButtonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","delete-activity").text("Remove Element");
+             var deleteButtonEl = $("<button>").addClass("button col-12").attr("id","delete-activity").text("Remove Element");
             // appends created elements together and then to the random-element-container
             activityRowEl.append(activityColEl, buttonEl, deleteButtonEl);
             $("#activity-row").html(activityRowEl);
@@ -82,13 +82,13 @@ var randomFoodPic = function() {
     fetch("https://foodish-api.herokuapp.com/api/").then(function(res){
         res.json().then(function(data){
             // creates div with class of row and id of food-pic-row for the img and button to go in
-            var foodRowEl = $("<div>").addClass("row").attr("id","food-pic-row");
+            var foodRowEl = $("<div>").addClass("row card border-dark").attr("id","food-pic-row");
             // creates and img element
             var foodImgEl = $("<img>").attr("src", data.image).addClass("img-fluid");
             // creates a button element
-            var buttonEl = $("<button>").addClass("button col-6").attr("id","food-pic-rerand").text("Want Another Food Picture?");
+            var buttonEl = $("<button>").addClass("button col-12").attr("id","food-pic-rerand").text("Want Another Food Picture?");
              // creates a button that will delete a random element
-             var deleteButtonEl = $("<button>").addClass("button col-6").attr("id","delete-food-pic").text("Remove Element");
+             var deleteButtonEl = $("<button>").addClass("button col-12").attr("id","delete-food-pic").text("Remove Element");
             // appends created elements together and then to the random-element-container
             foodRowEl.append(foodImgEl, buttonEl, deleteButtonEl);
             $("#food-pic-row").html(foodRowEl);
@@ -107,13 +107,13 @@ var randomAdvice = function() {
     fetch("https://api.adviceslip.com/advice",{cache: "no-cache"}).then(function(res){
         res.json().then(function(data){
             // creates a div with the class row and id of advice-row
-            var adviceRowEl = $("<div>").addClass("row").attr("id","advice-row");
+            var adviceRowEl = $("<div>").addClass("row card border-dark").attr("id","advice-row");
             // creates a div with the column classes to hold the advice
             var adviceColEl = $("<div>").addClass("col-12 col-md-8").text("Here is some advice you didn't ask for: " + data.slip.advice);
             // creates a button that will be used to get some more advice
-            var buttonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","advice-rerand").text("Want Some More Advice?");
+            var buttonEl = $("<button>").addClass("button col-12").attr("id","advice-rerand").text("Want Some More Advice?");
              // creates a button that will delete a random element
-             var deleteButtonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","delete-advice").text("Remove Element");
+             var deleteButtonEl = $("<button>").addClass("button col-12").attr("id","delete-advice").text("Remove Element");
             // appends created elements together and then to the random-element-container
             adviceRowEl.append(adviceColEl, buttonEl, deleteButtonEl);
             $("#advice-row").html(adviceRowEl);
@@ -132,16 +132,16 @@ var randomQuote = function() {
     fetch("https://api.quotable.io/random").then(function(res){
         res.json().then(function(data){
             // creates a div with the class row and id of quote-row
-            var quoteRowEl = $("<div>").addClass("row").attr("id","quote-row");
+            var quoteRowEl = $("<div>").addClass("row card border-dark").attr("id","quote-row");
             // creates a div with the column classes to hold the quote
             var quotewrapperEl = $("<div>").addClass("col-12 col-md-8")
             // creates a div for the quote and the author
             var quoteEl = $("<div>").addClass("quote").text(data.content);
             var authorEl = $("<div>").addClass("author").text("Quote By " + data.author);
             // creates a button that will be used to get another quote
-            var buttonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","quote-rerand").text("Another quote?");
+            var buttonEl = $("<button>").addClass("button col-12").attr("id","quote-rerand").text("Another quote?");
              // creates a button that will delete a random element
-             var deleteButtonEl = $("<button>").addClass("button col-6 col-md-2").attr("id","delete-quote").text("Remove Element");
+             var deleteButtonEl = $("<button>").addClass("button col-12").attr("id","delete-quote").text("Remove Element");
             // appends created elements together and then to the random-element-container
             quotewrapperEl.append(quoteEl, authorEl);
             quoteRowEl.append(quotewrapperEl, buttonEl, deleteButtonEl);
@@ -164,7 +164,7 @@ var triviaRandom = function() {
             // creates a div with the class row and id of triva-row
             var triviaRowEl = $("<div>").addClass("row").attr("id","trivia-row");
             // creates a div with the column classes to hold the question and answers
-            var triviaWrapperEl = $("<div>").addClass("col-12 col-md-12")
+            var triviaWrapperEl = $("<div>").addClass("row card border-dark")
             // creates a div for the question, appends question as html instead of text because response is encoded
             var questionEl = $("<div>").addClass("question","row").html(data.results[0].question);
             // creates answer rows
@@ -197,15 +197,15 @@ var triviaRandom = function() {
             }
 
             answerWrapper.append($("<div>").addClass("row justify-content-center"));
-            answerWrapper.append($("<button>").addClass("button col-6 col-md-2").attr("id","trivia-rerand").text("Try another question?"));
+            answerWrapper.append($("<button>").addClass("button col-12").attr("id","trivia-rerand").text("Try another question?"));
              // creates a button that will delete a random element
-            answerWrapper.append($("<button>").addClass("button col-6 col-md-2").attr("id","delete-trivia").text("Remove Element"));
+            answerWrapper.append($("<button>").addClass("button col-12").attr("id","delete-trivia").text("Remove Element"));
 
             // appends created elements together and then to the random-element-container
             triviaRowEl.append(triviaWrapperEl);
             $("#trivia-row").html(triviaWrapperEl);
 
-            $("main").on("click","button",function(){
+            $("article").on("click","button",function(){
                 switch ($(this).attr("id")) {
                     case "answer-btn-0":
                         $(this).text(checkTriviaAnswer(0, correctAnswerPosition));
@@ -277,11 +277,12 @@ for (var i = 0; i < displayElements.length; i++) {
 }
 
 // checks the main function for when a button is pushed
-$("main").on("click","button",function(){
+$("body").on("click","button",function(){
     // switch to run functions based off the id of the button that was pushed
     switch ($(this).attr("id")) {
         // rerand button cases start
         case "joke-rerand":
+            console.log("clicked")
             jokeRandom();
             break;
         case "activity-rerand":
