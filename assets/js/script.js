@@ -54,7 +54,7 @@ var randomActivity = function() {
         containerEl.append($("<div>").attr("id","activity-row"));            
     }
 
-    fetch("http://www.boredapi.com/api/activity/").then(function(res){
+    fetch("https://www.boredapi.com/api/activity/").then(function(res){
             res.json().then(function(data){
             // creates a div with the class row and id of activity-row
             var activityRowEl = $("<div>").addClass("row").attr("id","activity-row");
